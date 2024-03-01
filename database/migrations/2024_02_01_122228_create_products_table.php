@@ -14,15 +14,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->references('id')->on('orders');
-            $table->decimal('amount',10,2);
-            $table->string('status',45);
-            $table->string('type',45);
-            $table->timestamps();
+            $table->string('title',2000);
+            $table->string('slug',2000);
+            $table->string('image',2000);
+            $table->string('image_mime')->nullable();
+            $table->string('image_size')->nullable();
+            $table->longText('description')->nullable();
+            $table->decimal('price',10,2);
             $table->foreignIdFor(User::class,'created_by')->nullable();
             $table->foreignIdFor(User::class,'updated_by')->nullable();
+            $table->softDeletes();
+            $table->foreignIdFor(User::class,'deleted_by')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -33,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('products');
     }
 };
