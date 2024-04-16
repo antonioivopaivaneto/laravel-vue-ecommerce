@@ -1,20 +1,20 @@
 <template>
-    <div class="min-h-full flex ">
+    <div class="h-full bg-gray-200 flex ">
         <!--sidebar-->
 
-            <sidebar />
+            <sidebar :class="{'-ml-[200px]':!sidebarOpened}" />
 
 
         <div class="flex-1">
             <!--sidebar-->
 
-            <header class="h-8 shadow bg-white">
-                header
-            </header>
+            <Navbar @toggle-sidebar="toggleSidebar"></Navbar>
             <!--content-->
 
-            <main>
-                <router-view></router-view>
+            <main class="p-6">
+                <div class="p-4 rounded bg-white">
+                    <router-view></router-view>
+                </div>
             </main>
             <!--content-->
 
@@ -24,8 +24,38 @@
 </template>
 
 <script setup>
+import { ref,onMounted,onUnmounted } from "vue";
 import Sidebar from "./Sidebar.vue"
+import Navbar from "./Navbar.vue";
 const { title } = defineProps({
     title: String
 })
+
+const sidebarOpened = ref(true)
+
+function toggleSidebar(){
+    sidebarOpened.value = !sidebarOpened.value
+}
+
+onMounted(() => {
+    handleSidebarOpened()
+    window.addEventListener('resize',handleSidebarOpened)
+})
+onUnmounted(() => {
+    window.removeEventListener('resize',handleSidebarOpened)
+
+});
+
+function handleSidebarOpened(){
+
+    sidebarOpened.value = window.outerWidth > 768;
+
+    /*if(window.outerWidth<=768){
+        sidebarOpened.value = false
+    }else{
+        sidebarOpened.value = true
+
+    }
+    */
+}
 </script>
