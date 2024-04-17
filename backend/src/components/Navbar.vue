@@ -9,7 +9,7 @@
           class="flex items-center "
         >
           <img class="rounded-full w-8 mr-2" src="https://randomuser.me/api/portraits/men/19.jpg" alt="">
-         <small> Jonh Smith</small>
+         <small>{{ currentUser.name }}</small>
           <ChevronDownIcon
             class=" h-5 w-5 text-indigo-200 hover:text-indigo-100"
             aria-hidden="true"
@@ -45,6 +45,7 @@
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <button
+              @click="logout"
                 :class="[
                   active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                   'group flex w-full items-center rounded-md px-2 py-2 text-sm',
@@ -72,6 +73,19 @@
 import { MenuIcon,LogoutIcon,UserIcon } from '@heroicons/vue/solid'
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/solid'
+import store from '../store';
+import router from '../router';
+import { computed } from 'vue';
+
 
 const emit = defineEmits(['toggle-sidebar'])
+
+const currentUser = computed(() => store.state.user.data)
+
+function logout(){
+    store.dispatch('logout')
+    .then(() =>{
+        router.push({name: 'login'})
+    })
+}
 </script>
