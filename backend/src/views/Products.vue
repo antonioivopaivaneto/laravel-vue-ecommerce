@@ -52,6 +52,27 @@
             </tbody>
 
         </table>
+        <div class="flex justify-between items-center mt-5">
+            <span>
+                Showing from {{ products.from }} tp {{ products.to }}
+            </span>
+            <nav
+            v-if="products.total > products.limit"
+            class="relative z-0 inline-flex justify-center rounded-md shadow-sm -space-x-px" aria-label="PAgination">
+
+            <a v-for="(link, i ) of products.links" :key="i" :disabled="!link.url" href="#" @click.prevent="getForPage($event, link)" aria-current="page"
+            class="relative inline-flex items-center px-4 py-2 border-sm font-medium whitespace-nowrap"
+            v-html="link.label" :class="[link.active ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600':'bg-white border-gray-300 text-gray-500 hover:bg-gray-50',
+                i === 0 ? 'rounded-l-md' : '',
+                i === products.links.length -1 ? 'rounded-r-md' : '',
+                !link.url ? 'bg-gray-100 text-gray-700':''
+            ]"></a>
+
+
+        </nav>
+
+        </div>
+
      </template>
    </div>
 </template>
@@ -72,8 +93,21 @@ onMounted(() =>{
     getProducts();
 })
 
-function getProducts(){
-    store.dispatch('getProducts')
+function getProducts(url = null){
+    store.dispatch('getProducts',{
+        url,
+        search: search.value,
+        perPage:perPage.value
+    })
+}
+
+function getForPage(ev, link){
+
+    if(!link.url || link.active){
+        return
+    }
+
+    getProducts(link.url)
 }
 </script>
 
