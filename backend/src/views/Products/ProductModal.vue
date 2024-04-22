@@ -4,7 +4,7 @@
         <Dialog as="div" @close="closeModal" class="relative z-10">
             <TransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0" enter-to="opacity-100"
                 leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
-                <div class="fixed inset-0 bg-opacity-75" />
+                <div class="fixed inset-0 bg-black/75" />
             </TransitionChild>
 
             <div class="fixed inset-0 overflow-y-auto">
@@ -23,7 +23,7 @@
                                     {{ product.id ? `Update products: "${props.product.title}"` : 'Create new Product' }}
                                 </DialogTitle>
                                 <button @click="closeModal()"
-                                    class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    class="py-2 px-4 border border-transparent text-sm font-medium rounded-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                                     </svg>
@@ -121,6 +121,7 @@ function closeModal() {
 
 function onSubmit(){
     loading.value = true
+    console.log(product.value)
     if(product.value.id){
         store.dispatch('updateProduct',product.value)
         .then( response =>{
