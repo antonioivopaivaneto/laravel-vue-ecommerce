@@ -12,15 +12,13 @@
             <!--content-->
 
             <main class="p-6">
-                <div class="p-4 rounded bg-white">
                     <router-view ></router-view>
-                </div>
             </main>
             <!--content-->
 
         </div>
     </div>
-    <div v-else>
+    <div v-else class="min-h-full bg-gray-200 flex items-center justify-center">
         <Spinner />
 
     </div>
