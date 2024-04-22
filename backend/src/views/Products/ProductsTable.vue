@@ -3,7 +3,7 @@
 
 
 
-    <div class="bg-white p-4 rounded-lg shadow">
+    <div class="bg-white p-4 rounded-lg shadow animate-fade-in-down">
         <div class="flex justify-between border-b-2 pb-3">
             <div class="flex items-center">
                 <span class="whitespace-nowrap mr-3">Per Page</span>
@@ -42,17 +42,18 @@
             </thead>
             <tbody v-if="products.loading">
                 <tr>
-                    <td colspan="5">
+                    <td colspan="6">
                         <spinner v-if="products.loading" class="my-4 " />
 
                     </td>
                 </tr>
             </tbody>
             <tbody v-else>
-                <tr v-for="product of products.data" :key="product.id">
+              <!--  <tr v-for="(product,index) of products.data" :key="product.id" class="animate-fade-in-down" :style="{'animation-delay':`${index * 0.05}s`}">-->
+                <tr v-for="(product,index) of products.data" :key="product.id" >
                     <td class="border-b p-2"> {{ product.id }}</td>
                     <td class="border-b p-2">
-                        <img :src="product.image" class="w-16" alt="product.title">
+                        <img :src="product.image_url" class="w-16" alt="product.title">
                     </td>
                     <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
                         {{ product.title }}
@@ -84,7 +85,7 @@
                                     class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                                     <div class="px-1 py-1">
                                         <MenuItem v-slot="{ active }">
-                                        <button :class="[
+                                        <button @click="editProduct(product)" :class="[
                     active ? 'bg-violet-500 text-white' : 'text-gray-900',
                     'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                 ]">
@@ -162,6 +163,9 @@ const products = computed(() => store.state.products)
 const sortField = ref('updated_at')
 const sortDirection = ref('desc')
 
+
+const emit = defineEmits(['clickEdit'])
+
 onMounted(() => {
     getProducts();
 })
@@ -206,6 +210,11 @@ function sortProduct(field) {
 
 
 }
+
+function editProduct(product){
+    emit('clickEdit',product)
+
+}
 function deleteProduct(product){
     if(!confirm('Are you sure you want to delete')){
         return
@@ -220,6 +229,8 @@ function deleteProduct(product){
 
 
 }
+
+
 
 
 </script>
