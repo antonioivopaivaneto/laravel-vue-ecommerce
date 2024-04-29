@@ -21,7 +21,7 @@ axiosClient.interceptors.request.use( response =>{
 },
 error => {
     if(error.response.status === 401){
-        sessionStorage.removeItem('TOKEN')
+        store.commit('setToken',null)
         router.push({name: 'login'})
 
     }
