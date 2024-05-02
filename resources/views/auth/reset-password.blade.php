@@ -1,4 +1,8 @@
-<x-guest-layout>
+<x-app-layout>
+    <div class="w-[400px] mx-auto my-16">
+
+        <h2 class="text-2xl font-semibold text-center mb-5">Please enter your new pass word</h2>
+
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
@@ -36,4 +40,6 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+
+</div>
+</x-app-layout>
