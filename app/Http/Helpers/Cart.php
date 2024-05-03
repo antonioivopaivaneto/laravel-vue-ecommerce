@@ -50,7 +50,7 @@ class Cart
     {
         return array_reduce(
             $cartItems,
-            fn($carry, $item) => $carry + $item['qunatity'],0
+            fn($carry, $item) => $carry + $item['quantity'],0
         );
 
     }
