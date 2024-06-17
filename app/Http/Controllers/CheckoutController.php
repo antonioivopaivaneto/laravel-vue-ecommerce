@@ -122,7 +122,16 @@ class CheckoutController extends Controller
 
      public function failure(Request $request)
      {
-        dd($request->all());
+        return view('checkout.failure',['message' => ""]);
+
+     }
+
+     public function checkoutOrder(Order $order,Request $request)
+     {
+        $user = $request->user();
+
+        \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
+
 
      }
 }
