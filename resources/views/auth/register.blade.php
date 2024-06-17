@@ -17,7 +17,7 @@
       >
     </p>
     <div class="mb-4">
-      <x-text-input
+      <x-input
         placeholder="Your name"
         type="text"
         name="name"
@@ -28,7 +28,7 @@
     </div>
     </p>
     <div class="mb-4">
-      <x-text-input
+      <x-input
         placeholder="Your Email"
         type="email"
         name="email"
@@ -38,7 +38,7 @@
       <x-input-error :messages="$errors->get('email')" class="mt-2" />
     </div>
     <div class="mb-4">
-      <x-text-input
+      <x-input
         placeholder="Password"
         type="password"
         name="password"
@@ -48,7 +48,7 @@
     </div>
     </div>
     <div class="mb-4">
-      <x-text-input
+      <x-input
         placeholder="Repeat Password"
         type="password"
         name="password_confirmation"

@@ -76,9 +76,14 @@
 
                 </p>
 
-                <button type="submit" class="btn-primary w-full py-3 text-lg">
-                    Comprar
-                </button>
+                <form action="{{route('cart.checkout')}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn-primary w-full py-3 text-lg">
+                        Comprar
+                    </button>
+                </form>
+
+
             </div>
         </div>
 

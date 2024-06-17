@@ -20,7 +20,7 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <div class="mb-4">
-          <x-text-input
+          <x-input
           :value="old('email')"
             id="loginEmail"
             type="email"
@@ -32,7 +32,7 @@
 
         </div>
         <div class="mb-4">
-          <x-text-input
+          <x-input
           :value="__('Password')"
             id="loginPassword"
             type="password"
