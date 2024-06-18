@@ -9,6 +9,7 @@
                 <th>Order</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Items</th>
                 <th>Total</th>
                 <th class="w-64">Actions</th>
               </tr>
@@ -32,6 +33,7 @@
 
                   ">{{$order->status}}</small>
                 </td>
+                <td class="whitespace-nowrap"> {{$order->items()->count()}}</td>
                 <td>R$ {{$order->total_price}}</td>
                 <td class="flex gap-3">
                   <div x-data="{open: false}">
@@ -143,6 +145,9 @@
 
             </tbody>
           </table>
+        </div>
+        <div class="mt-3">
+            {{$orders->links()}}
         </div>
       </div>
 
