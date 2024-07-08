@@ -15,10 +15,10 @@ class Customer extends Model
 
     protected $fillable = ['first_name', 'last_name','phone','status'];
 
-    public function user(){
-        return $this->hasOne(User::class,'id','user_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
-
     private function _getAddresses():HasOne{
         return $this->hasOne(CustomerAddress::class,'customer_id','user_id');
     }

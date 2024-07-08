@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
+import Orders from "../views/Orders/Orders.vue";
+import OrderView from "../views/Orders/OrderView.vue";
 import Products from "../views/Products/Products.vue";
 import NotFound from "../views/NotFound.vue";
 import Dashboard from "../views/Dashboard.vue";
@@ -25,6 +27,16 @@ const routes = [
                 path: "/products",
                 name: "app.products",
                 component: Products,
+            },
+            {
+                path: "/orders",
+                name: "app.orders",
+                component: Orders,
+            },
+            {
+                path: "/orders/:id",
+                name: "app.orders.view",
+                component: OrderView,
             },
         ],
     },

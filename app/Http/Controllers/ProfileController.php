@@ -16,12 +16,11 @@ class ProfileController extends Controller
 
 
         $user = $request->user();
-        $customer = $user;
+        $customer = $user->customer;
         $shippingAddress = $customer->shippingAddress ??  new CustomerAddress(['type' => AddressType::Shipping]);
         $billingAddress = $customer->billingAddress ?? new CustomerAddress(['type' => AddressType::Billing]);
         //dd($customer,$shippingAddress->attributesToArray(),$billingAddress,$billingAddress->customer);;
         $countries = Country::query()->orderBy('name')->get();
-
 
 
         return view('profile.view',compact('user','shippingAddress','billingAddress','countries','customer'));
@@ -35,7 +34,7 @@ class ProfileController extends Controller
         $billingData = $customerData['billing'];
 
         $user = $request->user();
-        $$customer = $user->customer;
+        $customer = $user->customer;
 
         $customer->update($customerData);
 
