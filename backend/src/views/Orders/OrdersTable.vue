@@ -61,7 +61,8 @@
 
                     </td>
                     <td class="border-b p-2">
-                        <span>{{ order.status }}</span>
+                        <OrderStatus :order="order"/>
+
                     </td>
                     <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
                         {{ order.created_at }}
@@ -119,7 +120,7 @@ import { PRODUCTS_PER_PAGE } from '../../constants.js'
 import TableHeadingCell from '../../components/core/table/TableHeadingCell.vue';
 import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { DotsVerticalIcon, PencilIcon, TranslateIcon, TrashIcon } from '@heroicons/vue/solid';
-
+import OrderStatus from './OrderStatus.vue'
 const perPage = ref(PRODUCTS_PER_PAGE)
 const search = ref('')
 const orders = computed(() => store.state.orders)

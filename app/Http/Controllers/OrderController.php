@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\OrderStatus;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;
@@ -30,4 +31,6 @@ class OrderController extends Controller
         return view('order.view', compact('order'));
 
     }
+
+
 }
